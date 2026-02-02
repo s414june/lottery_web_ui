@@ -1,7 +1,10 @@
 <template>
   <main class="h-screen flex flex-col bg-white">
     <header class="p-2 bg-red-700">
-      <p class="text-white font-bold">老祖宗保佑我</p>
+      <p class="text-white font-bold">老祖宗保佑我
+        <span class="ml-4 text-sm font-normal">Made by
+          <a class="underline" href="https://github.com/s414june/lottery_web_ui" target="_blank">June Wu</a> ✨</span>
+      </p>
     </header>
     <section class="flex flex-col justify-center items-center grow p-2">
       <router-view />
