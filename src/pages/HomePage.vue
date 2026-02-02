@@ -53,7 +53,8 @@ import { ref } from 'vue';
 const title = ref('');
 const prizes = ref('');
 const participants = ref('');
-const results = ref();
+type Result = { prize: string; winner: string };
+const results = ref<Result[]>([]);
 const errorMessage = ref('');
 
 const start = () => {
@@ -74,7 +75,7 @@ const start = () => {
     results.value = [];
     randomPermutationK(participantList, prizeList.length).forEach((p, i) => {
         results.value.push({
-            prize: prizeList[i], winner: p
+            prize: prizeList[i] ?? '', winner: p
         })
     });
     if (results.value.length === 0) {
@@ -100,7 +101,7 @@ function randInt(n: number): number {
         while (true) {
             cryptoObj.getRandomValues(buf);
             const x = buf[0];
-            if (x && x < limit) return x % n;
+            if (x !== undefined && x < limit) return x % n;
         }
     }
 
@@ -120,8 +121,8 @@ function randomPermutationIndexK(n: number, k: number): number[] {
     for (let i = 0; i < k; i++) {
         const j = i + randInt(n - i); // j in [i, n)
         const tmp = a[i];
-        if (a[i] && a[j]) a[i] = a[j];
-        if (a[j] && tmp) a[j] = tmp;
+        if (a[i] !== undefined && a[j] !== undefined) a[i] = a[j];
+        if (a[j] !== undefined && tmp !== undefined) a[j] = tmp;
     }
     return a.slice(0, k);
 }
