@@ -3,16 +3,15 @@ import vue from '@vitejs/plugin-vue'
 import tailwindcss from '@tailwindcss/vite'
 import { fileURLToPath, URL } from 'url'
 
-// https://vite.dev/config/
-export default defineConfig({
-  plugins: [vue(), tailwindcss(),],
+export default defineConfig(({ mode }) => ({
+  plugins: [vue(), tailwindcss()],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
   },
-  base: './',
+  base: '/lottery_web_ui/',
   build: {
     outDir: 'docs',
   },
-})
+}))
