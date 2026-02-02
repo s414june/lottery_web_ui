@@ -11,7 +11,7 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  base: '/lottery_web_ui/',
+  base: './',
   build: {
     outDir: 'docs',
   },
